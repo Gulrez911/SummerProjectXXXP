@@ -1,0 +1,11 @@
+com\gul\config\AppConfig.class
+com\gul\entity\Employee.class
+com\gul\repo\StudentRepository.class
+com\gul\entity\Student.class
+com\gul\entity\News.class
+com\gul\config\WebConfig.class
+com\gul\controller\SummerNoteController.class
+com\gul\entity\NewsDto.class
+com\gul\repo\EmployeeRepository.class
+com\gul\config\JpaConfig.class
+com\gul\controller\HomeController.class

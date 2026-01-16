@@ -1,29 +1,27 @@
-package com.gul.web2;
+package com.gul.web2.xxx;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class WebData2 {
+import com.gul.web2.WebData;
+
+public class WorkingWebData2 {
 
 	public static void main(String[] args) throws IOException {
 
 		List<WebData> data2 = new ArrayList<>();
-//		Document doc = Jsoup.connect("https://www.pornpics.de/pornstars/sunny-leone/").get();
-		Document doc = Jsoup.connect("https://www.pornpics.com/pornstars/").get();
-		
-//		Document doc = Jsoup.connect("https://www.pornpics.de/galleries/milf-in-glasses-sunny-leone-reveals-her-fakes-and-poses-naked-in-the-kitchen-71552417/").get();
+//		String url = "https://www.pornpics.de/?q=lexie+fox";
+//		String url ="https://www.pornpics.de/pornstars/sunny-leone/";
+//		String url = "https://www.pornpics.de/pornstars/";
+//		String url = "https://www.pornpics.de/?q=lexie+fox";
+		String url = "https://www.pornpics.de/galleries/pretty-arab-babe-mia-khalifa-fucks-a-black-stud-lets-him-cum-on-her-big-tits-26210531/";
+		Document doc = Jsoup.connect(url).get();
 		Elements elements = doc.getAllElements();
 
 		for (int i = 0; i < elements.size(); i++) {
@@ -38,15 +36,60 @@ public class WebData2 {
 						if (abcf3.className().contains("thumbwook")) {
 
 							Elements abcf344 = abcf3.getAllElements();
-							WebData newsDto = new WebData();
 							for (Element abcf3445 : abcf344) {
 								if (abcf3445.toString().contains(
 										"rel-link")) {
 
-									String src2 = abcf3445.attr(
-											"href");
-									System.out.println(src2);
-									data2.add(newsDto);
+									Elements ssss = abcf3445
+											.children();
+									for (Element ddeee : ssss) {
+										String href = ddeee.attr(
+												"href");
+										System.out.println(href);
+										WebData newsDto = new WebData();
+										newsDto.setUserImageLink(
+												href);
+										if (ddeee.children().toString()
+												.contains("img")) {
+											System.out.println("img2:  "
+													+ ddeee.children());
+
+											Elements imgChildre = ddeee
+													.children();
+											for (Element ss : imgChildre) {
+												String src = ss.attr(
+														"src");
+												System.out.println("src:  "
+														+ src);
+
+												String data_src = ss.attr(
+														"data-src");
+												System.out.println("found:  "
+														+ data_src);
+
+//													ddddd
+
+												newsDto.setUserImageScr(
+														data_src);
+
+//													loop category
+
+//													newsDto.setUserImageLink(
+//															"https://www.pornpics.de"
+//																	+ src2);
+//													loop category
+
+												newsDto.setMainLink(url);
+												newsDto.setWebsiteName(
+														"PornPic");
+												data2.add(newsDto);
+												data2.add(newsDto);
+											}
+
+										}
+
+									}
+
 								}
 							}
 
@@ -58,10 +101,9 @@ public class WebData2 {
 		}
 
 //		transferToFile(data2);
-		
-		
+
 	}
-	
+
 //	 static void transferToFile(List<WebData> data2) {
 //		 
 //		 String filePath = "C:\\Users\\gulfa\\Desktop\\test\\weblink.xlsx";

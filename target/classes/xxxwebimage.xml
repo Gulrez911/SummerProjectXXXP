@@ -8,6 +8,7 @@
 				<mapping row="1" col="0">ass.websiteName</mapping>
 				<mapping row="1" col="1">ass.mainLink</mapping>
 				<mapping row="1" col="2">ass.userImageLink</mapping>
+				<mapping row="1" col="3">ass.userImageScr</mapping>
  			</section>
 			<loopbreakcondition>
 				<rowcheck offset="0">

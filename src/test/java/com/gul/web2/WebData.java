@@ -8,5 +8,6 @@ public class WebData {
 	String websiteName;
 	String mainLink;
 	String userImageLink;
+	String userImageScr;
 //	String Name;
 }

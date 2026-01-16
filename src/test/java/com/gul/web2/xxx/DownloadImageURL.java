@@ -1,4 +1,4 @@
-package com.gul.web2;
+package com.gul.web2.xxx;
 
 import java.io.File;
 import java.io.InputStream;
@@ -12,6 +12,9 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.springframework.util.ResourceUtils;
 
+import com.gul.web2.ExcelReader;
+import com.gul.web2.WebData;
+
 public class DownloadImageURL {
 
 	public static void main(String[] args) throws Exception {
@@ -19,8 +22,8 @@ public class DownloadImageURL {
 //		        
 
 //		File file = ResourceUtils.getFile("classpath:webExcle.xlsx");
-		File file = ResourceUtils.getFile("classpath:1768583026313.xlsx");
-		
+		File file = ResourceUtils.getFile("classpath:1768586215785.xlsx");
+
 		InputStream stream = FileUtils.openInputStream(file);
 		File f = ResourceUtils.getFile("classpath:xxxwebimage.xml");
 		System.out.println("processing excel file " + f.getName());

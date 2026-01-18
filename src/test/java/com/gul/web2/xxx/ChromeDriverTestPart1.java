@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -45,142 +47,192 @@ public class ChromeDriverTestPart1 {
 //			String url ="https://onepagelove.com/templates";
 //			String url ="https://www.pornpics.de/pornstars/";
 
-//			for (int j = 1; j < 503; j++) {
-//			for (int j = 1; j < 2; j++) {
-//				String url = "https://www.pornpics.de/pornstars/" + j;
+			for (int j = 1; j <= 100; j++) {
+//			for (int j = 1; j < 3; j++) {
+				String url = "https://www.pornpics.com/pornstars/" + j;
 //				String url = "https://www.pornpics.de/galleries/pretty-arab-babe-mia-khalifa-fucks-a-black-stud-lets-him-cum-on-her-big-tits-26210531/";
 //			String url = "https://www.pornpics.de/?q=lexie+fox";
 
-				String url = "https://www.pornpics.com/pornstars/mia-khalifa/";
-				
-				
-			driver.get(url);
+//				String url = "https://www.pornpics.com/pornstars/sunny-leone/";
+//				String url = "https://www.pornpics.com/pornstars/sophia-leone/";
+
+				driver.get(url);
 //			System.out.println("Page title is: " + driver.getTitle());
 
-			////////////////////////////
+				////////////////////////////
 
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			int count = 0;
-			Long scrollHeight4 = (Long) js.executeScript("return document.body.scrollHeight");
-			System.out.println("////////////  " + scrollHeight4);
-			Long val1 = scrollHeight4;
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				int count = 0;
+				Long scrollHeight4 = (Long) js
+						.executeScript("return document.body.scrollHeight");
+				System.out.println("////////////  " + scrollHeight4);
+				Long val1 = scrollHeight4;
 
 //				for (int i = 0; i < 20; i++) {
 
-			//////////////////////////////// robot code
-			for (int i = 0; i < 15; i++) {
-				js.executeScript("window.scrollBy(0, 800);");
-				System.out.println("count: " + i);
-				Long scrollHeight = (Long) js
-						.executeScript("return document.body.scrollHeight");
+				//////////////////////////////// robot code
 
-				System.out.println("Total Page Scroll Height: " + scrollHeight + " pixels");
+				List<Integer> listScollHeight = new ArrayList<>();
+				Map<Integer, Integer> countMap2 = new HashMap<>();
+				int flag = 0;
+				for (int i = 0; i < 110; i++) {
+					js.executeScript("window.scrollBy(0, 800);");
+					System.out.println("count: " + i);
+					Long scrollHeight = (Long) js.executeScript(
+							"return document.body.scrollHeight");
 
-				if (count < 4) {
-					if (val1.equals(scrollHeight)) {
+					System.out.println("Total Page Scroll Height: " + scrollHeight
+							+ " pixels");
+
+					if (count < 4) {
+						if (val1.equals(scrollHeight)) {
+							count++;
+						} else {
+							val1 = scrollHeight;
+							count = 0;
+							count++;
+						}
+
 						count++;
 					} else {
-						val1 = scrollHeight;
-						count = 0;
-						count++;
 					}
+					Thread.sleep(1500);
 
-					count++;
-				} else {
+//				check
+					int height2 = scrollHeight.intValue();
+					listScollHeight.add(scrollHeight.intValue());
+//				for (Integer s : listScollHeight) {
+					countMap2.put(height2, countMap2.getOrDefault(height2, 0) + 1);
+//				}
+
+					for (Map.Entry<Integer, Integer> entry : countMap2.entrySet()) {
+
+//					System.out.println("height: "+entry.getKey()+": "+entry.getValue());
+						if (entry.getValue() >= 3) {
+							System.out.println("found: " + entry.getValue());
+							flag = 1;
+							i = 109;
+//						return;
+						}
+					}
+//				if(flag==1) {
+//					return;
+//				}
+
+//				end
 				}
-				Thread.sleep(1500);
-			}
 ///////////////////////////////////////////////////////
 //			11
 
-			String html = driver.getPageSource();
+				String html = driver.getPageSource();
 
-			// 🔹 Parse with Jsoup
-			Document doc = Jsoup.parse(html, url);
+				// 🔹 Parse with Jsoup
+				Document doc = Jsoup.parse(html, url);
 
 //			        extractData(doc);
 
 //			Document doc = Jsoup.connect("https://www.pornpics.de/pornstars/sunny-leone/").get();
 //			Document doc = Jsoup.connect("https://www.pornpics.de/galleries/milf-in-glasses-sunny-leone-reveals-her-fakes-and-poses-naked-in-the-kitchen-71552417/").get();
-			Elements elements = doc.getAllElements();
+				Elements elements = doc.getAllElements();
 
-			for (int i = 0; i < elements.size(); i++) {
+				for (int i = 0; i < elements.size(); i++) {
 
-				Element element = elements.get(i);
-				Elements divChildren = element.children();
+					Element element = elements.get(i);
+					Elements divChildren = element.children();
 
-				for (Element element2 : divChildren) {
-					if (element2.className().contains("wookmark-initialised")) {
-						Elements abcf = element2.getAllElements();
-						for (Element abcf3 : abcf) {
-							if (abcf3.className().contains("thumbwook")) {
+					for (Element element2 : divChildren) {
+						if (element2.className().contains("wookmark-initialised")) {
+							Elements abcf = element2.getAllElements();
+							for (Element abcf3 : abcf) {
+								if (abcf3.className().contains(
+										"thumbwook")) {
 
-								Elements abcf344 = abcf3
-										.getAllElements();
+									Elements abcf344 = abcf3
+											.getAllElements();
 //								WebData newsDto = new WebData();
-								for (Element abcf3445 : abcf344) {
-									if (abcf3445.toString()
-											.contains("rel-link")) {
+									for (Element abcf3445 : abcf344) {
+										if (abcf3445.toString()
+												.contains("rel-link")) {
 
-										Elements ssss = abcf3445
-												.children();
-										for (Element ddeee : ssss) {
-											String href = ddeee.attr(
-													"href");
-											System.out.println(href);
-											WebData newsDto = new WebData();
-											newsDto.setUserImageLink(
-													href);
-											if (ddeee.children().toString()
-													.contains("img")) {
-												System.out.println("img2:  "
-														+ ddeee.children());
+											Elements ssss = abcf3445
+													.children();
+											for (Element ddeee : ssss) {
+												String href = ddeee.attr(
+														"href");
+												System.out.println(href);
+//												WebData newsDto = new WebData();
+//												
+//												newsDto.setUserImageLink(
+//												"https://www.pornpics.com"
+//														+ href);
+												
+//												newsDto.setUserImageLink(
+//														href);
+												if (ddeee.children().toString()
+														.contains("img")) {
+													System.out.println("img2:  "
+															+ ddeee.children());
 
-												Elements imgChildre = ddeee
-														.children();
-												for (Element ss : imgChildre) {
-													String src = ss.attr(
-															"src");
-													System.out.println("src:  "
-															+ src);
+													Elements imgChildre = ddeee
+															.children();
+													for (Element ss : imgChildre) {
+														
+														
+														WebData newsDto = new WebData();
+														
+														newsDto.setUserImageLink(
+														"https://www.pornpics.com"
+																+ href);
+														
+														
+														
+														
+														
+														String src = ss.attr(
+																"src");
+														System.out.println("src:  "
+																+ src);
 
-													String data_src = ss.attr(
-															"data-src");
-													System.out.println("found:  "
-															+ data_src);
+														String data_src = ss.attr(
+																"data-src");
+														System.out.println("found:  "
+																+ data_src);
 
 //														ddddd
 
-													newsDto.setUserImageScr(
-															data_src);
+														newsDto.setUserImageScr(
+																data_src);
 
 //														loop category
 
 //														newsDto.setUserImageLink(
-//																"https://www.pornpics.de"
+//																"https://www.pornpics.com"
 //																		+ src2);
 //														loop category
 
-													newsDto.setMainLink(url);
-													newsDto.setWebsiteName(
-															"PornPic");
-													if (newsDto.getUserImageLink()
-															.contains("https://www.pornpics")) {
-														data2.add(newsDto);
+														newsDto.setMainLink(url);
+														newsDto.setWebsiteName(
+																"PornPic");
+														if (newsDto.getUserImageLink()
+																.contains("https://www.pornpics")&&!newsDto.getUserImageScr()
+																.equals("")) {
+															data2.add(newsDto);
+														}
+//														System.out.println("count: "+count22++);
 													}
+
 												}
 
 											}
 
 										}
-
 									}
-								}
 
+								}
 							}
 						}
-					}
 
+					}
 				}
 			}
 		} finally {
@@ -196,7 +248,11 @@ public class ChromeDriverTestPart1 {
 	public static void transferToFile(List<WebData> data2) throws IOException {
 
 //		String filePath = "C:\\Users\\gulfa\\Desktop\\test\\weblink.xlsx";
-		String path = "C:/Users/gulfa/Desktop/test/"+"first" + System.currentTimeMillis() + ".xlsx";
+//		String path = "C:/Users/gulfa/Desktop/test/" + "sophia-leone-first-" + System.currentTimeMillis()
+//				+ ".xlsx";
+		
+		String path = "C:/Users/gulfa/Desktop/test/" + "pornstars-first-" + System.currentTimeMillis()
+		+ ".xlsx";
 
 		try (// Create Blank workbook
 				XSSFWorkbook workbook = new XSSFWorkbook()) {
@@ -211,7 +267,7 @@ public class ChromeDriverTestPart1 {
 
 //				Sheet sheet = workbook1.createSheet("Employees");
 				Sheet sheet = workbook1.createSheet("pornpic");
-				
+
 				// Header row
 				Row headerRow = sheet.createRow(0);
 				headerRow.createCell(0).setCellValue("Website Name");

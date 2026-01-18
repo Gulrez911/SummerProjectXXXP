@@ -31,7 +31,7 @@ public class ChromeDriverTestPart2 {
 	public static void main(String[] args) throws Exception {
 
 //		File file = ResourceUtils.getFile("classpath:first1768590149328.xlsx");
-		String pathExcle = "C:\\Users\\gulfa\\Desktop\\test\\first1768596450317.xlsx";
+		String pathExcle = "C:\\Users\\gulfa\\Desktop\\test\\sunny-leone-first-first-1768643178314 - Copy.xlsx";
 		File file = new File(pathExcle);
 //		File file = ResourceUtils.getFile("classpath:first1768594845826.xlsx");
 //		String file = "C:/Users/gulfa/Desktop/test/baseFolder";
@@ -65,28 +65,29 @@ public class ChromeDriverTestPart2 {
 
 				//////////////////////////////// robot code
 //				for (int i = 0; i < 15; i++) {
-//					js.executeScript("window.scrollBy(0, 800);");
-//					System.out.println("count: " + i);
-//					Long scrollHeight = (Long) js.executeScript(
-//							"return document.body.scrollHeight");
-//
-//					System.out.println("Total Page Scroll Height: " + scrollHeight
-//							+ " pixels");
-//
-//					if (count < 4) {
-//						if (val1.equals(scrollHeight)) {
-//							count++;
-//						} else {
-//							val1 = scrollHeight;
-//							count = 0;
-//							count++;
-//						}
-//
-//						count++;
-//					} else {
-//					}
-//					Thread.sleep(1500);
-//				}
+					for (int i = 0; i < 5; i++) {
+					js.executeScript("window.scrollBy(0, 800);");
+					System.out.println("count: " + i);
+					Long scrollHeight = (Long) js.executeScript(
+							"return document.body.scrollHeight");
+
+					System.out.println("Total Page Scroll Height: " + scrollHeight
+							+ " pixels");
+
+					if (count < 4) {
+						if (val1.equals(scrollHeight)) {
+							count++;
+						} else {
+							val1 = scrollHeight;
+							count = 0;
+							count++;
+						}
+
+						count++;
+					} else {
+					}
+					Thread.sleep(1500);
+				}
 				///////////////////////////////////////////////////////
 //				11
 
@@ -202,7 +203,7 @@ public class ChromeDriverTestPart2 {
 	public static void transferToFile(List<WebData> data2) throws IOException {
 
 //		String filePath = "C:\\Users\\gulfa\\Desktop\\test\\weblink.xlsx";
-		String path = "C:/Users/gulfa/Desktop/test/" +"second"+ System.currentTimeMillis() + ".xlsx";
+		String path = "C:/Users/gulfa/Desktop/test/" +"sunny-leone-second-"+ System.currentTimeMillis() + ".xlsx";
 
 		try (// Create Blank workbook
 				XSSFWorkbook workbook = new XSSFWorkbook()) {

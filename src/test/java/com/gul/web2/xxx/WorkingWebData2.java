@@ -20,7 +20,10 @@ public class WorkingWebData2 {
 //		String url ="https://www.pornpics.de/pornstars/sunny-leone/";
 //		String url = "https://www.pornpics.de/pornstars/";
 //		String url = "https://www.pornpics.de/?q=lexie+fox";
-		String url = "https://www.pornpics.de/galleries/pretty-arab-babe-mia-khalifa-fucks-a-black-stud-lets-him-cum-on-her-big-tits-26210531/";
+//		String url = "https://www.pornpics.de/galleries/pretty-arab-babe-mia-khalifa-fucks-a-black-stud-lets-him-cum-on-her-big-tits-26210531/";
+		String url = "https://www.pornpics.de/galleries/dark-haired-beauty-sunny-leone-reveals-her-nice-tits-and-trimmed-muff-as-well-11647480/";
+		
+		
 		Document doc = Jsoup.connect(url).get();
 		Elements elements = doc.getAllElements();
 
